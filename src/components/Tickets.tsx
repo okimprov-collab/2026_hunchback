@@ -108,7 +108,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
         </div>
 
         {/* Ticket Tier Cards */}
-        <div className="space-y-6">
+        <div id="ticket-tiers-section" className="space-y-6 scroll-mt-28">
           <div className="text-center">
             <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200">
               票種等級與優惠

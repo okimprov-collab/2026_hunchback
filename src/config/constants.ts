@@ -20,7 +20,7 @@ export const CONFIG = {
   SHOW_TITLE: '現代版《鐘樓怪人》即興音樂劇',
   SHOW_SUBTITLE: '鐘聲一響，今晚的故事由你決定。',
   TAGLINE: '你給我們一個線索，我們唱出整座鐘樓。',
-  
+
   // Official Troupe Website (Wix Site)
   OFFICIAL_WEBSITE: 'https://okimprov2022.wixsite.com/okimprov',
 
@@ -71,7 +71,7 @@ export const CREATIVE_TEAM: CreativeMember[] = [
   { role: '導演 / 音樂製作', name: 'Kubi', highlight: '現場即興琴鍵與即興敘事架構靈魂', image: kubiPhoto },
   { role: '製作人 / 音控', name: 'Cuggi', highlight: '聲景共鳴與現場精準聲光把關', image: cuggiPhoto },
   { role: '燈光', name: '廣翰', highlight: '哥德式大教堂光影與情感氛圍刻畫' },
-  { role: '動作設計', name: '柚子', highlight: '肢體隱喻與即興空間張力引導' },
+  { role: '動作設計', name: '柚子、曼達', highlight: '肢體隱喻與即興空間張力引導' },
   { role: '服裝顧問', name: '曼達', highlight: '現代街頭與古典哥德美學解構' },
 ];
 

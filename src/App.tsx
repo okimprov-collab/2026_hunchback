@@ -110,7 +110,7 @@ export const App: React.FC = () => {
           <div className="hidden sm:flex items-center gap-3">
             <button
               type="button"
-              onClick={() => scrollToSection('tickets-section')}
+              onClick={() => scrollToSection('ticket-tiers-section')}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-obsidian-950 text-xs font-bold tracking-wide shadow-glow-gold hover:brightness-110 active:scale-95 transition-all cursor-pointer"
             >
               <Ticket className="w-3.5 h-3.5" />
@@ -165,7 +165,7 @@ export const App: React.FC = () => {
             <div className="pt-2">
               <button
                 type="button"
-                onClick={() => scrollToSection('tickets-section')}
+                onClick={() => scrollToSection('ticket-tiers-section')}
                 className="w-full py-3 rounded-xl bg-amber-500 text-obsidian-950 font-bold text-center text-sm shadow-glow-gold"
               >
                 前往預訂席位
