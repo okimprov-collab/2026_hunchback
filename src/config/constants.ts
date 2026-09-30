@@ -9,7 +9,6 @@ import kubiPhoto from '../assets/宣傳照/Kubi.png';
 import ramenPhoto from '../assets/宣傳照/拉麵.png';
 import codPhoto from '../assets/宣傳照/鱈魚.png';
 import xiaoHuiPhoto from '../assets/宣傳照/小慧.png';
-import cuggiPhoto from '../assets/宣傳照/Cuggi.png';
 
 
 /**
@@ -68,8 +67,8 @@ export const SHOW_SESSIONS: ShowSession[] = [
  * Creative Team Roster
  */
 export const CREATIVE_TEAM: CreativeMember[] = [
-  { role: '導演 / 音樂製作', name: 'Kubi', highlight: '現場即興琴鍵與即興敘事架構靈魂', image: kubiPhoto },
-  { role: '製作人 / 音控', name: 'Cuggi', highlight: '聲景共鳴與現場精準聲光把關', image: cuggiPhoto },
+  { role: '導演 / 音樂製作', name: 'Kubi', highlight: '現場即興琴鍵與即興敘事架構靈魂' },
+  { role: '製作人 / 音控', name: 'Cuggi', highlight: '聲景共鳴與現場精準聲光把關' },
   { role: '燈光', name: '廣翰', highlight: '哥德式大教堂光影與情感氛圍刻畫' },
   { role: '動作設計', name: '柚子、曼達', highlight: '肢體隱喻與即興空間張力引導' },
   { role: '服裝顧問', name: '曼達', highlight: '現代街頭與古典哥德美學解構' },

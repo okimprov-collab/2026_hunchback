@@ -3,75 +3,42 @@ import { Users, Sparkles, Wand2, Clapperboard, Maximize2, X, ChevronLeft, Chevro
 import { CAST_MEMBERS, CREATIVE_TEAM } from '../config/constants';
 import { CastMember } from '../types';
 
-interface PreviewItem {
-  name: string;
-  role?: string;
-  description?: string;
-  image: string;
-  group: 'cast' | 'creative';
-}
-
 export const TeamCast: React.FC = () => {
-  const [activeCast, setActiveCast] = useState<CastMember | null>(null);
-  const [previewItem, setPreviewItem] = useState<PreviewItem | null>(null);
+  const [previewCast, setPreviewCast] = useState<CastMember | null>(null);
 
+  // Navigate cast preview photos
   const navigatePreview = useCallback(
     (direction: 'prev' | 'next') => {
-      if (!previewItem) return;
-      if (previewItem.group === 'creative') {
-        const list = CREATIVE_TEAM.filter((c) => !!c.image);
-        if (list.length <= 1) return;
-        const currentIndex = list.findIndex((c) => c.name === previewItem.name);
-        const nextIndex =
-          direction === 'prev'
-            ? (currentIndex - 1 + list.length) % list.length
-            : (currentIndex + 1) % list.length;
-        const item = list[nextIndex];
-        setPreviewItem({
-          name: item.name,
-          role: item.role,
-          description: item.highlight,
-          image: item.image!,
-          group: 'creative',
-        });
-      } else {
-        const list = CAST_MEMBERS.filter((c) => !!c.image);
-        if (list.length <= 1) return;
-        const currentIndex = list.findIndex((c) => c.name === previewItem.name);
-        const nextIndex =
-          direction === 'prev'
-            ? (currentIndex - 1 + list.length) % list.length
-            : (currentIndex + 1) % list.length;
-        const item = list[nextIndex];
-        setPreviewItem({
-          name: item.name,
-          role: item.role || item.persona,
-          description: item.archetype,
-          image: item.image!,
-          group: 'cast',
-        });
-      }
+      if (!previewCast) return;
+      const list = CAST_MEMBERS.filter((c) => !!c.image);
+      if (list.length <= 1) return;
+      const currentIndex = list.findIndex((c) => c.name === previewCast.name);
+      const nextIndex =
+        direction === 'prev'
+          ? (currentIndex - 1 + list.length) % list.length
+          : (currentIndex + 1) % list.length;
+      setPreviewCast(list[nextIndex]);
     },
-    [previewItem]
+    [previewCast]
   );
 
   // Keyboard navigation for image lightbox preview
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (!previewItem) return;
+      if (!previewCast) return;
       if (e.key === 'Escape') {
-        setPreviewItem(null);
+        setPreviewCast(null);
       } else if (e.key === 'ArrowLeft') {
         navigatePreview('prev');
       } else if (e.key === 'ArrowRight') {
         navigatePreview('next');
       }
     },
-    [previewItem, navigatePreview]
+    [previewCast, navigatePreview]
   );
 
   useEffect(() => {
-    if (previewItem) {
+    if (previewCast) {
       window.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
     } else {
@@ -81,7 +48,7 @@ export const TeamCast: React.FC = () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [previewItem, handleKeyDown]);
+  }, [previewCast, handleKeyDown]);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -119,7 +86,7 @@ export const TeamCast: React.FC = () => {
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-amber-400" />
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200">
-                即興演員陣容
+                即興演員陣容 (Cast)
               </h3>
             </div>
             <span className="text-xs text-slate-400 font-mono">10 位現場即興演員</span>
@@ -129,30 +96,12 @@ export const TeamCast: React.FC = () => {
             {CAST_MEMBERS.map((actor, idx) => (
               <div
                 key={idx}
-                onClick={() => setActiveCast(actor === activeCast ? null : actor)}
-                className={`group relative rounded-2xl p-5 glass-card border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
-                  actor.borderGlow
-                } ${
-                  activeCast?.name === actor.name
-                    ? 'border-amber-400 shadow-glow-gold bg-slate-900/95 -translate-y-2'
-                    : 'border-slate-800/80 hover:-translate-y-1.5'
-                }`}
+                onClick={() => actor.image && setPreviewCast(actor)}
+                className={`group relative rounded-2xl p-5 glass-card border cursor-pointer transition-all duration-300 flex flex-col justify-between ${actor.borderGlow} border-slate-800/80 hover:border-amber-500/40 hover:-translate-y-1.5`}
               >
                 {/* Character Silhouette / Theatrical Avatar Photo Container */}
                 <div
-                  onClick={(e) => {
-                    if (actor.image) {
-                      e.stopPropagation();
-                      setPreviewItem({
-                        name: actor.name,
-                        role: actor.role || actor.persona,
-                        description: actor.archetype,
-                        image: actor.image,
-                        group: 'cast',
-                      });
-                    }
-                  }}
-                  title={actor.image ? '點擊放大預覽照片' : undefined}
+                  title={actor.image ? '點擊放大預覽宣傳照' : undefined}
                   className={`w-full aspect-square rounded-xl bg-gradient-to-br ${actor.avatarGradient} border border-white/10 relative overflow-hidden group/img transition-transform duration-500 ${
                     actor.image ? 'hover:scale-[1.02] cursor-zoom-in' : ''
                   }`}
@@ -168,7 +117,7 @@ export const TeamCast: React.FC = () => {
 
                       {/* Hover Zoom Overlay Badge */}
                       <div className="absolute inset-0 bg-obsidian-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1.5 backdrop-blur-[2px]">
-                        <div className="p-2 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-glow-gold transform scale-75 group-hover/img:scale-100 transition-transform duration-300">
+                        <div className="p-2 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 shadow-glow-gold transform scale-75 group-hover/img:scale-105 transition-transform duration-300">
                           <Maximize2 className="w-4 h-4" />
                         </div>
                         <span className="text-[11px] font-medium text-slate-200 tracking-wider">
@@ -206,103 +155,34 @@ export const TeamCast: React.FC = () => {
                     {actor.archetype}
                   </p>
                 </div>
-
-                {/* Micro indicator */}
-                <div className="mt-3 pt-2 border-t border-slate-800/60 flex items-center justify-center text-[10px] text-slate-400 group-hover:text-amber-300">
-                  <span>點擊了解心聲</span>
-                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Selected Actor Detail Drawer / Callout */}
-        {activeCast && (
-          <div className="rounded-2xl glass-card border border-amber-500/40 p-6 sm:p-8 bg-obsidian-900/95 shadow-glow-gold animate-fade-in flex flex-col sm:flex-row items-center gap-6">
-            {activeCast.image ? (
-              <div
-                onClick={() =>
-                  setPreviewItem({
-                    name: activeCast.name,
-                    role: activeCast.role || activeCast.persona,
-                    description: activeCast.archetype,
-                    image: activeCast.image!,
-                    group: 'cast',
-                  })
-                }
-                title="點擊放大預覽照片"
-                className="relative group/drawer-img cursor-zoom-in shrink-0"
-              >
-                <img
-                  src={activeCast.image}
-                  alt={activeCast.name}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top border-2 border-amber-400/60 shadow-md group-hover/drawer-img:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-obsidian-950/40 opacity-0 group-hover/drawer-img:opacity-100 transition-opacity flex items-center justify-center text-amber-300">
-                  <Maximize2 className="w-5 h-5" />
-                </div>
-              </div>
-            ) : (
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500/20 to-purple-600/20 border border-amber-400/40 flex items-center justify-center text-2xl sm:text-3xl font-cinzel font-bold text-amber-300 shrink-0">
-                {activeCast.name.charAt(0)}
-              </div>
-            )}
-            <div className="space-y-2 text-center sm:text-left flex-1">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                <h4 className="font-serif text-2xl font-bold text-slate-100">
-                  {activeCast.name}
-                </h4>
-                <span className="inline-block px-2.5 py-0.5 rounded-full text-xs bg-amber-500/10 text-amber-300 border border-amber-500/30">
-                  飾演 · {activeCast.role || activeCast.persona}
-                </span>
-              </div>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                「在《現代版鐘樓怪人》的即興舞台上，化身為【{activeCast.role || activeCast.persona}】——{activeCast.archetype}。今晚你所提供的任何一句話，都可能成為我唱響命運的起手式。」
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setActiveCast(null)}
-              className="text-xs text-slate-400 hover:text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-            >
-              收合
-            </button>
-          </div>
-        )}
-
-        {/* Photo Lightbox Modal */}
-        {previewItem && previewItem.image && (
+        {/* Actor Photo Lightbox Modal */}
+        {previewCast && previewCast.image && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian-950/90 backdrop-blur-md animate-fade-in"
-            onClick={() => setPreviewItem(null)}
+            onClick={() => setPreviewCast(null)}
           >
             <div
-              className={`relative max-w-xl w-full flex flex-col items-center rounded-2xl glass-card p-4 sm:p-5 bg-obsidian-900/95 shadow-2xl space-y-4 ${
-                previewItem.group === 'creative'
-                  ? 'border border-purple-500/40'
-                  : 'border border-amber-500/40'
-              }`}
+              className="relative max-w-xl w-full flex flex-col items-center rounded-2xl glass-card border border-amber-500/40 p-4 sm:p-5 bg-obsidian-900/95 shadow-2xl space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
               <div className="w-full flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2.5">
                   <span className="font-serif text-lg font-bold text-slate-100">
-                    {previewItem.name}
+                    {previewCast.name}
                   </span>
-                  <span
-                    className={`px-2.5 py-0.5 rounded-full text-xs font-medium border ${
-                      previewItem.group === 'creative'
-                        ? 'bg-purple-500/15 text-purple-300 border-purple-500/30'
-                        : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
-                    }`}
-                  >
-                    {previewItem.role}
+                  <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                    {previewCast.role || previewCast.persona}
                   </span>
                 </div>
                 <button
                   type="button"
-                  onClick={() => setPreviewItem(null)}
+                  onClick={() => setPreviewCast(null)}
                   className="p-1.5 rounded-lg text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors cursor-pointer"
                   aria-label="Close"
                   title="關閉 (ESC)"
@@ -312,16 +192,10 @@ export const TeamCast: React.FC = () => {
               </div>
 
               {/* Main Photo Frame with Navigation */}
-              <div
-                className={`relative w-full aspect-square max-h-[70vh] rounded-xl overflow-hidden border bg-obsidian-950 flex items-center justify-center ${
-                  previewItem.group === 'creative'
-                    ? 'border-purple-500/30'
-                    : 'border-amber-500/30 shadow-glow-gold'
-                }`}
-              >
+              <div className="relative w-full aspect-square max-h-[70vh] rounded-xl overflow-hidden border border-amber-500/30 shadow-glow-gold bg-obsidian-950 flex items-center justify-center">
                 <img
-                  src={previewItem.image}
-                  alt={`${previewItem.name} 宣傳照`}
+                  src={previewCast.image}
+                  alt={`${previewCast.name} 宣傳照`}
                   className="w-full h-full object-cover object-top"
                 />
 
@@ -330,7 +204,7 @@ export const TeamCast: React.FC = () => {
                   type="button"
                   onClick={handlePrev}
                   className="absolute left-2.5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-obsidian-950/70 hover:bg-amber-500/80 text-slate-200 hover:text-obsidian-950 border border-slate-700/60 hover:border-amber-400 transition-all shadow-lg cursor-pointer"
-                  title="上一張 (←)"
+                  title="上一位演員 (←)"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -340,22 +214,16 @@ export const TeamCast: React.FC = () => {
                   type="button"
                   onClick={handleNext}
                   className="absolute right-2.5 top-1/2 -translate-y-1/2 p-2 rounded-full bg-obsidian-950/70 hover:bg-amber-500/80 text-slate-200 hover:text-obsidian-950 border border-slate-700/60 hover:border-amber-400 transition-all shadow-lg cursor-pointer"
-                  title="下一張 (→)"
+                  title="下一位演員 (→)"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Modal Footer with Role / Highlight & Keyboard Hints */}
+              {/* Modal Footer with Role Archetype & Keyboard Hints */}
               <div className="w-full flex items-center justify-between text-xs text-slate-400 pt-1">
-                <span
-                  className={
-                    previewItem.group === 'creative'
-                      ? 'text-purple-300 font-medium'
-                      : 'text-amber-400/90 font-medium'
-                  }
-                >
-                  {previewItem.description}
+                <span className="text-amber-400/90 font-medium">
+                  {previewCast.archetype}
                 </span>
                 <span className="hidden sm:inline font-mono text-[11px] text-slate-500">
                   可使用 ← / → 切換，ESC 關閉
@@ -365,7 +233,7 @@ export const TeamCast: React.FC = () => {
           </div>
         )}
 
-        {/* Creative & Production Team */}
+        {/* Creative & Production Team (Clean Cards Without Photos) */}
         <div className="space-y-6 pt-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
             <Clapperboard className="w-5 h-5 text-purple-400" />
@@ -386,36 +254,8 @@ export const TeamCast: React.FC = () => {
                   </span>
                   <Wand2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-400 transition-colors" />
                 </div>
-                <div className="flex items-center gap-3">
-                  {crew.image && (
-                    <div
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setPreviewItem({
-                          name: crew.name,
-                          role: crew.role,
-                          description: crew.highlight,
-                          image: crew.image!,
-                          group: 'creative',
-                        });
-                      }}
-                      title="點擊放大預覽照片"
-                      className="relative w-12 h-12 rounded-xl overflow-hidden border border-purple-400/40 hover:border-amber-400 shadow-md group/crew-img cursor-zoom-in shrink-0 transition-transform duration-300 hover:scale-105"
-                    >
-                      <img
-                        src={crew.image}
-                        alt={crew.name}
-                        className="w-full h-full object-cover object-top"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-obsidian-950/40 opacity-0 group-hover/crew-img:opacity-100 transition-opacity flex items-center justify-center text-amber-300">
-                        <Maximize2 className="w-3.5 h-3.5" />
-                      </div>
-                    </div>
-                  )}
-                  <div className="text-lg font-bold text-slate-100 font-serif">
-                    {crew.name}
-                  </div>
+                <div className="text-lg font-bold text-slate-100 font-serif">
+                  {crew.name}
                 </div>
                 {crew.highlight && (
                   <p className="text-[11px] text-slate-400 leading-relaxed">
