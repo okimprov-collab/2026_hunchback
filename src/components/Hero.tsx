@@ -104,7 +104,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 text-obsidian-950 font-bold text-base tracking-wide shadow-glow-gold hover:shadow-glow-lg hover:brightness-110 active:scale-[0.98] transition-all cursor-pointer"
             >
               <Ticket className="w-5 h-5" />
-              <span>立即前往購票 (超早鳥 500 起)</span>
+              <span>立即前往購票 (早鳥票 600 起)</span>
             </button>
 
             {/* Survey CTA */}
