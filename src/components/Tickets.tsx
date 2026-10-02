@@ -12,7 +12,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-serif text-amber-300 border-amber-500/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-sans text-amber-300 border-amber-500/30">
             <Ticket className="w-3.5 h-3.5 text-amber-400" />
             <span>票務方案 · TICKETS & SCHEDULE</span>
           </div>
@@ -22,7 +22,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
               席位預訂
             </span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base font-serif">
+          <p className="text-slate-400 text-sm sm:text-base font-sans">
             座位有限，全場採自由入座。建議提前 10 分鐘入場以投遞您的即興關鍵字線索！
           </p>
         </div>
@@ -36,7 +36,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
                 <Calendar className="w-6 h-6" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-100 font-serif">正式演出場次</h3>
+                <h3 className="text-lg font-bold text-slate-100 font-sans">正式演出場次</h3>
                 <p className="text-xs text-slate-400">2026 年 11 月 週末午後限定呈現</p>
               </div>
             </div>
@@ -74,7 +74,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-slate-100 font-serif">{CONFIG.VENUE.NAME}</h3>
+                  <h3 className="text-lg font-bold text-slate-100 font-sans">{CONFIG.VENUE.NAME}</h3>
                   <p className="text-xs text-slate-400">專業沉浸式喜劇與即興劇場</p>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
         {/* Ticket Tier Cards */}
         <div id="ticket-tiers-section" className="space-y-6 scroll-mt-28">
           <div className="text-center">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200">
+            <h3 className="font-sans text-xl sm:text-2xl font-bold text-slate-200">
               票種等級與優惠
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mt-1">
@@ -145,7 +145,7 @@ export const Tickets: React.FC<TicketsProps> = () => {
 
                 <div className="space-y-4 pt-2">
                   <div className="text-center border-b border-slate-800/80 pb-4">
-                    <h4 className="text-xl font-bold text-slate-100 font-serif">{tier.name}</h4>
+                    <h4 className="text-xl font-bold text-slate-100 font-sans">{tier.name}</h4>
                     
                     {/* Period badge if present */}
                     {tier.period && (

@@ -205,7 +205,7 @@ export const BackgroundCanvas: React.FC = () => {
 
         if (p.char) {
           // Render musical symbol or star glyph
-          ctx.font = `${p.size}px "Noto Serif TC", serif`;
+          ctx.font = `${p.size}px "Inter", "Microsoft JhengHei", "微軟正黑體", sans-serif`;
           ctx.fillStyle = `${p.color}${p.opacity.toFixed(2)})`;
           ctx.shadowBlur = 12;
           ctx.shadowColor = 'rgba(245, 158, 11, 0.7)';

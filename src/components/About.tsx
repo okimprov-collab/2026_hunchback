@@ -34,7 +34,7 @@ export const About: React.FC = () => {
       <div className="relative z-10 max-w-6xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-serif text-amber-300 border-amber-500/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-sans text-amber-300 border-amber-500/30">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>創作概念 · THEATRICAL CONCEPT</span>
           </div>
@@ -44,7 +44,7 @@ export const About: React.FC = () => {
               現代鐘樓
             </span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base font-serif leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base font-sans leading-relaxed">
             我們不再重複百年前巴黎聖母院的古典悲劇，而是將鏡頭對準當代都市中每一顆孤單的靈魂。
           </p>
         </div>
@@ -62,7 +62,7 @@ export const About: React.FC = () => {
               <div className="inline-flex p-3 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
                 <Compass className="w-6 h-6" />
               </div>
-              <blockquote className="font-serif text-xl sm:text-2xl text-amber-200 leading-relaxed font-semibold italic border-l-4 border-amber-400 pl-4 py-1">
+              <blockquote className="font-sans text-xl sm:text-2xl text-amber-200 leading-relaxed font-semibold italic border-l-4 border-amber-400 pl-4 py-1">
                 「如果卡西莫多的『怪』，不是外貌缺陷，而是他不被理解的活法？」
               </blockquote>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -74,7 +74,7 @@ export const About: React.FC = () => {
               <div className="inline-flex p-3 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
                 <HeartHandshake className="w-6 h-6" />
               </div>
-              <blockquote className="font-serif text-xl sm:text-2xl text-purple-200 leading-relaxed font-semibold italic border-l-4 border-purple-400 pl-4 py-1">
+              <blockquote className="font-sans text-xl sm:text-2xl text-purple-200 leading-relaxed font-semibold italic border-l-4 border-purple-400 pl-4 py-1">
                 「『鐘樓』不是建築，而是心中不敢走出的角落；『怪人』不是怪物，而是尚未被看見的人。」
               </blockquote>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
@@ -87,7 +87,7 @@ export const About: React.FC = () => {
         {/* 3 Pillars of Improv Musical */}
         <div className="space-y-6">
           <div className="text-center">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200 flex items-center justify-center gap-2">
+            <h3 className="font-sans text-xl sm:text-2xl font-bold text-slate-200 flex items-center justify-center gap-2">
               <Eye className="w-5 h-5 text-amber-400" />
               三大即興現場特點
             </h3>
@@ -110,7 +110,7 @@ export const About: React.FC = () => {
                   {pillar.enTitle}
                 </div>
 
-                <h4 className="text-xl font-bold text-slate-100 mb-3 font-serif flex items-center gap-2">
+                <h4 className="text-xl font-bold text-slate-100 mb-3 font-sans flex items-center gap-2">
                   <span>{pillar.title}</span>
                 </h4>
 

@@ -18,14 +18,14 @@ export const Footer: React.FC = () => {
                 href={CONFIG.OFFICIAL_WEBSITE}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xl font-serif font-bold text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1.5 group"
+                className="text-xl font-sans font-bold text-amber-400 hover:text-amber-300 transition-colors inline-flex items-center gap-1.5 group"
                 title="前往 OK 的即興工作室 官方網站"
               >
                 <span>{CONFIG.TROUPE_NAME}</span>
                 <ExternalLink className="w-4 h-4 text-amber-400/80 group-hover:text-amber-300 transition-colors" />
               </a>
             </div>
-            <p className="text-sm text-slate-400 max-w-md leading-relaxed font-serif">
+            <p className="text-sm text-slate-400 max-w-md leading-relaxed font-sans">
               「OK 的即興工作室」致力於推動台灣即興劇與即興音樂劇的藝術邊界。無預設劇本、無固定台詞，擁抱當下的錯誤與靈光，在每一次的現場共振中，打造僅此一次的劇場奇蹟。
             </p>
             <div className="text-xs text-amber-400/80 flex items-center gap-1.5">

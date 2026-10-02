@@ -67,7 +67,7 @@ export const App: React.FC = () => {
               <span className="font-cinzel text-lg font-bold text-slate-100 group-hover:text-amber-300 transition-colors">
                 鐘樓怪人
               </span>
-              <span className="text-[10px] block tracking-widest text-amber-400 font-serif -mt-1">
+              <span className="text-[10px] block tracking-widest text-amber-400 font-sans -mt-1">
                 {CONFIG.TROUPE_NAME}
               </span>
             </div>

@@ -118,7 +118,7 @@ export const SurveyForm: React.FC = () => {
       <div className="max-w-4xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-serif text-amber-300 border-amber-500/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-sans text-amber-300 border-amber-500/30">
             <BellRing className="w-3.5 h-3.5 text-amber-400" />
             <span>心聲投遞 · AUDIENCE SURVEY & REGISTRATION</span>
           </div>
@@ -128,7 +128,7 @@ export const SurveyForm: React.FC = () => {
               信號與回響
             </span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base font-serif max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base font-sans max-w-2xl mx-auto leading-relaxed">
             不論您是準備購票的觀眾、或是剛步出劇場的旅人，寫下您心中的隻字片語。您的文字將可能在未來的鐘聲中被唱響。
           </p>
         </div>
@@ -292,12 +292,12 @@ export const SurveyForm: React.FC = () => {
               <span className="text-xs uppercase tracking-widest text-amber-400 font-cinzel">
                 Notre-Dame de Paris · Gratitude Card
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-slate-100 mt-1">
+              <h3 className="font-sans text-2xl sm:text-3xl font-bold text-slate-100 mt-1">
                 致親愛的敲鐘人【{formData.name}】
               </h3>
             </div>
 
-            <div className="p-5 rounded-2xl bg-obsidian-950/70 border border-amber-500/20 text-slate-300 text-sm leading-relaxed space-y-3 font-serif">
+            <div className="p-5 rounded-2xl bg-obsidian-950/70 border border-amber-500/20 text-slate-300 text-sm leading-relaxed space-y-3 font-sans">
               <p className="italic text-amber-200">
                 「鐘樓上的卡西莫多已收到你的信號。今晚的舞台上，每顆寂寞的音符都因你而有了歸宿。」
               </p>

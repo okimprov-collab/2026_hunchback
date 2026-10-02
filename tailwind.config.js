@@ -33,9 +33,9 @@ export default {
         },
       },
       fontFamily: {
-        cinzel: ['"Cinzel"', 'serif'],
-        serif: ['"Noto Serif TC"', 'serif'],
-        sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        cinzel: ['"Cinzel"', '"Microsoft JhengHei"', '"微軟正黑體"', 'sans-serif'],
+        serif: ['"Microsoft JhengHei"', '"微軟正黑體"', 'sans-serif'],
+        sans: ['"Inter"', '"Microsoft JhengHei"', '"微軟正黑體"', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
         'glow-gold': '0 0 25px -5px rgba(245, 158, 11, 0.35)',

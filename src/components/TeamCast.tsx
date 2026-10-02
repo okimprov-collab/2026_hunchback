@@ -65,7 +65,7 @@ export const TeamCast: React.FC = () => {
       <div className="max-w-6xl mx-auto space-y-20">
         {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-serif text-amber-300 border-amber-500/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-sans text-amber-300 border-amber-500/30">
             <Users className="w-3.5 h-3.5 text-amber-400" />
             <span>陣容亮點 · CAST & CREATIVE TEAM</span>
           </div>
@@ -75,7 +75,7 @@ export const TeamCast: React.FC = () => {
               敲鐘人與靈魂
             </span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base font-serif">
+          <p className="text-slate-400 text-sm sm:text-base font-sans">
             即興音樂劇是群體的無畏冒險。每位演員既是編劇、也是歌手，更是彼此在未知舞台上的救生索。
           </p>
         </div>
@@ -85,7 +85,7 @@ export const TeamCast: React.FC = () => {
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-amber-400" />
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200">
+              <h3 className="font-sans text-xl sm:text-2xl font-bold text-slate-200">
                 即興演員陣容 (Cast)
               </h3>
             </div>
@@ -145,7 +145,7 @@ export const TeamCast: React.FC = () => {
 
                 {/* Actor Info */}
                 <div className="mt-4 space-y-1 text-center">
-                  <h4 className="font-serif text-base sm:text-lg font-bold text-slate-100 group-hover:text-amber-300 transition-colors">
+                  <h4 className="font-sans text-base sm:text-lg font-bold text-slate-100 group-hover:text-amber-300 transition-colors">
                     {actor.name}
                   </h4>
                   <div className="text-xs text-amber-400 font-semibold tracking-wide">
@@ -173,7 +173,7 @@ export const TeamCast: React.FC = () => {
               {/* Modal Header */}
               <div className="w-full flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2.5">
-                  <span className="font-serif text-lg font-bold text-slate-100">
+                  <span className="font-sans text-lg font-bold text-slate-100">
                     {previewCast.name}
                   </span>
                   <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30">
@@ -237,7 +237,7 @@ export const TeamCast: React.FC = () => {
         <div className="space-y-6 pt-4">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
             <Clapperboard className="w-5 h-5 text-purple-400" />
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-slate-200">
+            <h3 className="font-sans text-xl sm:text-2xl font-bold text-slate-200">
               主創與幕後製作群
             </h3>
           </div>
@@ -254,7 +254,7 @@ export const TeamCast: React.FC = () => {
                   </span>
                   <Wand2 className="w-3.5 h-3.5 text-slate-400 group-hover:text-purple-400 transition-colors" />
                 </div>
-                <div className="text-lg font-bold text-slate-100 font-serif">
+                <div className="text-lg font-bold text-slate-100 font-sans">
                   {crew.name}
                 </div>
                 {crew.highlight && (

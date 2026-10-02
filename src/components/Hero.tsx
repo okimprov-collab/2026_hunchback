@@ -36,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
           </div>
 
           {/* Slogan */}
-          <p className="text-amber-400 font-serif text-lg sm:text-2xl tracking-widest font-semibold drop-shadow-md">
+          <p className="text-amber-400 font-sans text-lg sm:text-2xl tracking-widest font-semibold drop-shadow-md">
             {CONFIG.TAGLINE}
           </p>
 
@@ -46,13 +46,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent text-glow">
               《鐘樓怪人》
             </span>
-            <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif font-normal text-slate-300 mt-2">
+            <span className="block text-2xl sm:text-3xl lg:text-4xl font-sans font-normal text-slate-300 mt-2">
               即興音樂劇
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-slate-300 text-base sm:text-xl font-serif italic border-l-0 lg:border-l-2 border-amber-500/50 lg:pl-4 py-1 max-w-2xl">
+          <p className="text-slate-300 text-base sm:text-xl font-sans italic border-l-0 lg:border-l-2 border-amber-500/50 lg:pl-4 py-1 max-w-2xl">
             {CONFIG.SHOW_SUBTITLE}
           </p>
 
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
             {/* Poster Frame Container */}
             <div className="relative rounded-2xl overflow-hidden glass-card border-2 border-amber-500/40 shadow-2xl p-2.5 bg-obsidian-900/95">
               {/* Cathedral Arch Header Notch */}
-              <div className="flex items-center justify-between px-3 py-1.5 border-b border-amber-500/20 text-xs text-amber-300/80 font-serif mb-2">
+              <div className="flex items-center justify-between px-3 py-1.5 border-b border-amber-500/20 text-xs text-amber-300/80 font-sans mb-2">
                 <span className="flex items-center gap-1.5">
                   <Bell className="w-3.5 h-3.5 text-amber-400" />
                   官方正式主視覺海報 · Official Visual
@@ -163,7 +163,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
                     <div className="w-20 h-20 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-glow-gold animate-bounce">
                       <Bell className="w-10 h-10" />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-amber-300">現代版《鐘樓怪人》</h3>
+                    <h3 className="text-xl font-sans font-bold text-amber-300">現代版《鐘樓怪人》</h3>
                     <p className="text-xs text-slate-400 max-w-xs leading-relaxed">
                       「如果卡西莫多的『怪』，不是外貌缺陷，而是他不被理解的活法？」
                     </p>
@@ -171,7 +171,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
                 )}
 
                 {/* Hover overlay hint */}
-                <div className="absolute inset-0 bg-obsidian-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-amber-300 text-sm font-serif">
+                <div className="absolute inset-0 bg-obsidian-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-amber-300 text-sm font-sans">
                   <Maximize2 className="w-5 h-5 text-amber-400" />
                   <span>點擊放大檢視海報</span>
                 </div>
@@ -198,7 +198,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="w-full flex items-center justify-between px-3 py-2 border-b border-slate-800 text-sm text-slate-300">
-              <span className="font-serif font-semibold text-amber-300 flex items-center gap-2">
+              <span className="font-sans font-semibold text-amber-300 flex items-center gap-2">
                 <Bell className="w-4 h-4 text-amber-400" />
                 現代版《鐘樓怪人》即興音樂劇 · 官方主視覺海報
               </span>
@@ -240,7 +240,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenSurvey }) => {
             </div>
 
             <div>
-              <h3 className="text-xl font-serif font-bold text-amber-300 mb-2">
+              <h3 className="text-xl font-sans font-bold text-amber-300 mb-2">
                 即將正式開賣！
               </h3>
               <p className="text-slate-300 text-sm leading-relaxed">
