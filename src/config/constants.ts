@@ -1,14 +1,14 @@
 import { CastMember, CreativeMember, ShowSession, TicketTier } from '../types';
-import pinguPhoto from '../assets/宣傳照/Pingu.png';
-import miuPhoto from '../assets/宣傳照/MIU.png';
-import bookPhoto from '../assets/宣傳照/BOOK.png';
-import allenPhoto from '../assets/宣傳照/Allen.png';
-import xiaoBPhoto from '../assets/宣傳照/小B.png';
-import caihongPhoto from '../assets/宣傳照/彩虹.png';
-import kubiPhoto from '../assets/宣傳照/Kubi.png';
-import ramenPhoto from '../assets/宣傳照/拉麵.png';
-import codPhoto from '../assets/宣傳照/鱈魚.png';
-import xiaoHuiPhoto from '../assets/宣傳照/小慧.png';
+import pinguPhoto from '../assets/宣傳照/Pingu.webp';
+import miuPhoto from '../assets/宣傳照/MIU.webp';
+import bookPhoto from '../assets/宣傳照/BOOK.webp';
+import allenPhoto from '../assets/宣傳照/Allen.webp';
+import xiaoBPhoto from '../assets/宣傳照/小B.webp';
+import caihongPhoto from '../assets/宣傳照/彩虹.webp';
+import kubiPhoto from '../assets/宣傳照/Kubi.webp';
+import ramenPhoto from '../assets/宣傳照/拉麵.webp';
+import codPhoto from '../assets/宣傳照/鱈魚.webp';
+import xiaoHuiPhoto from '../assets/宣傳照/小慧.webp';
 
 
 /**
