@@ -72,6 +72,7 @@ export const CREATIVE_TEAM: CreativeMember[] = [
   { role: '燈光', name: '廣翰', highlight: '哥德式大教堂光影與情感氛圍刻畫' },
   { role: '動作設計', name: '柚子、曼達', highlight: '肢體隱喻與即興空間張力引導' },
   { role: '服裝顧問', name: '曼達', highlight: '現代街頭與古典哥德美學解構' },
+  { role: '宣傳網頁製作', name: '鱈魚', highlight: '以數位化構築鐘樓的數位舞台與互動體驗' },
 ];
 
 /**
