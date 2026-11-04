@@ -9,9 +9,30 @@ import { Footer } from './components/Footer';
 import { Bell, Menu, X, Ticket, MessageSquareHeart } from 'lucide-react';
 import { CONFIG } from './config/constants';
 
+const getBasePath = () => {
+  const path = window.location.pathname;
+  const match = path.match(/^(.*?)\/feedback(?:\.html)?\/?$/);
+  if (match) {
+    return match[1] ? `${match[1].replace(/\/$/, '')}/` : '/';
+  }
+  return path.endsWith('/') ? path : `${path}/`;
+};
+
+const isFeedbackLocation = () => {
+  const { pathname, search, hash } = window.location;
+  return (
+    /\/feedback(?:\.html)?\/?$/.test(pathname) ||
+    new URLSearchParams(search).get('page') === 'feedback' ||
+    ['#feedback', '#/feedback', '#survey', '#survey-section'].includes(hash)
+  );
+};
+
 export const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'feedback'>(() =>
+    isFeedbackLocation() ? 'feedback' : 'home'
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,19 +42,51 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSurvey = () => {
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (isFeedbackLocation()) {
+        setCurrentPage('feedback');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
+    };
+  }, []);
+
+  const openFeedbackPage = () => {
     setMobileMenuOpen(false);
-    const element = document.getElementById('survey-section');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const basePath = getBasePath().replace(/\/$/, '');
+    const targetPath = `${basePath}/feedback`;
+    if (window.location.pathname !== targetPath || window.location.hash) {
+      window.history.pushState({ page: 'feedback' }, '', targetPath);
     }
+    setCurrentPage('feedback');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const scrollToSection = (id: string) => {
+  const goHomeAndScroll = (id?: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const basePath = getBasePath();
+    if (currentPage !== 'home' || window.location.pathname !== basePath || window.location.hash) {
+      window.history.pushState({ page: 'home' }, '', basePath);
+      setCurrentPage('home');
+      setTimeout(() => {
+        if (id) {
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 50);
+    } else if (id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -56,7 +109,7 @@ export const App: React.FC = () => {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              goHomeAndScroll();
             }}
             className="flex items-center gap-2.5 group cursor-pointer"
           >
@@ -77,32 +130,34 @@ export const App: React.FC = () => {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
             <button
               type="button"
-              onClick={() => scrollToSection('about-section')}
+              onClick={() => goHomeAndScroll('about-section')}
               className="hover:text-amber-300 transition-colors cursor-pointer"
             >
               創作概念
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('tickets-section')}
+              onClick={() => goHomeAndScroll('tickets-section')}
               className="hover:text-amber-300 transition-colors cursor-pointer"
             >
               演出場次
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('cast-section')}
+              onClick={() => goHomeAndScroll('cast-section')}
               className="hover:text-amber-300 transition-colors cursor-pointer"
             >
               演出陣容
             </button>
             <button
               type="button"
-              onClick={scrollToSurvey}
-              className="hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-1.5"
+              onClick={openFeedbackPage}
+              className={`hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-1.5 ${
+                currentPage === 'feedback' ? 'text-amber-300 font-semibold' : ''
+              }`}
             >
               <MessageSquareHeart className="w-4 h-4 text-amber-400" />
-              <span>觀後感投遞</span>
+              <span>觀後回饋</span>
             </button>
           </nav>
 
@@ -110,7 +165,7 @@ export const App: React.FC = () => {
           <div className="hidden sm:flex items-center gap-3">
             <button
               type="button"
-              onClick={() => scrollToSection('ticket-tiers-section')}
+              onClick={() => goHomeAndScroll('ticket-tiers-section')}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-obsidian-950 text-xs font-bold tracking-wide shadow-glow-gold hover:brightness-110 active:scale-95 transition-all cursor-pointer"
             >
               <Ticket className="w-3.5 h-3.5" />
@@ -136,36 +191,36 @@ export const App: React.FC = () => {
           <div className="md:hidden glass-card border-t border-b border-amber-500/20 bg-obsidian-950/95 px-6 py-5 space-y-4 animate-fade-in">
             <button
               type="button"
-              onClick={() => scrollToSection('about-section')}
+              onClick={() => goHomeAndScroll('about-section')}
               className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-amber-300"
             >
               創作概念
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('tickets-section')}
+              onClick={() => goHomeAndScroll('tickets-section')}
               className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-amber-300"
             >
               演出場次與票價
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('cast-section')}
+              onClick={() => goHomeAndScroll('cast-section')}
               className="block w-full text-left py-2 text-base font-medium text-slate-200 hover:text-amber-300"
             >
               即興演員與創作團隊
             </button>
             <button
               type="button"
-              onClick={scrollToSurvey}
+              onClick={openFeedbackPage}
               className="block w-full text-left py-2 text-base font-medium text-amber-400"
             >
-              現場觀後感與名單登記
+              觀後回饋
             </button>
             <div className="pt-2">
               <button
                 type="button"
-                onClick={() => scrollToSection('ticket-tiers-section')}
+                onClick={() => goHomeAndScroll('ticket-tiers-section')}
                 className="w-full py-3 rounded-xl bg-amber-500 text-obsidian-950 font-bold text-center text-sm shadow-glow-gold"
               >
                 前往預訂席位
@@ -177,15 +232,20 @@ export const App: React.FC = () => {
 
       {/* Main Sections */}
       <main className="flex-1 relative z-10">
-        <Hero onOpenSurvey={scrollToSurvey} />
-        <About />
-        <Tickets onOpenSurvey={scrollToSurvey} />
-        <TeamCast />
-        <SurveyForm />
+        {currentPage === 'feedback' ? (
+          <SurveyForm onBackHome={() => goHomeAndScroll()} />
+        ) : (
+          <>
+            <Hero onOpenSurvey={openFeedbackPage} />
+            <About />
+            <Tickets onOpenSurvey={openFeedbackPage} />
+            <TeamCast />
+          </>
+        )}
       </main>
 
       {/* Troupe Footer */}
-      <Footer />
+      <Footer onNavigateSection={goHomeAndScroll} onOpenFeedback={openFeedbackPage} />
     </div>
   );
 };

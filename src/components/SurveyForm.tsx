@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Send, AlertCircle, Sparkles, Heart, BellRing, Mail, User, Phone, MessageSquare, Loader2, RefreshCw } from 'lucide-react';
+import { Send, AlertCircle, Sparkles, Heart, BellRing, Mail, User, Phone, MessageSquare, Loader2, RefreshCw, ArrowLeft } from 'lucide-react';
 import { CONFIG } from '../config/constants';
 import { SurveyFormData } from '../types';
 
-export const SurveyForm: React.FC = () => {
+interface SurveyFormProps {
+  onBackHome?: () => void;
+}
+
+export const SurveyForm: React.FC<SurveyFormProps> = ({ onBackHome }) => {
   const [formData, setFormData] = useState<SurveyFormData>({
     name: '',
     email: '',
@@ -114,8 +118,21 @@ export const SurveyForm: React.FC = () => {
   };
 
   return (
-    <section id="survey-section" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-obsidian-950/80 to-obsidian-900">
-      <div className="max-w-4xl mx-auto space-y-12">
+    <section id="survey-section" className="relative pt-28 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent via-obsidian-950/80 to-obsidian-900">
+      <div className="max-w-4xl mx-auto space-y-10">
+        {onBackHome && (
+          <div>
+            <button
+              type="button"
+              onClick={onBackHome}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass-card border-slate-700/80 text-slate-300 hover:text-amber-300 hover:border-amber-500/40 transition-all text-sm cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 text-amber-400" />
+              <span>返回演出介紹主頁</span>
+            </button>
+          </div>
+        )}
+
         {/* Section Header */}
         <div className="text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card text-xs font-sans text-amber-300 border-amber-500/30">

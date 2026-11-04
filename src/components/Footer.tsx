@@ -2,7 +2,12 @@ import React from 'react';
 import { ArrowUp, Sparkles, ExternalLink, Globe } from 'lucide-react';
 import { CONFIG } from '../config/constants';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigateSection?: (id: string) => void;
+  onOpenFeedback?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigateSection, onOpenFeedback }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -41,23 +46,59 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about-section" className="hover:text-amber-400 transition-colors">
+                <a
+                  href="#about-section"
+                  onClick={(e) => {
+                    if (onNavigateSection) {
+                      e.preventDefault();
+                      onNavigateSection('about-section');
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors"
+                >
                   創作概念
                 </a>
               </li>
               <li>
-                <a href="#tickets-section" className="hover:text-amber-400 transition-colors">
+                <a
+                  href="#tickets-section"
+                  onClick={(e) => {
+                    if (onNavigateSection) {
+                      e.preventDefault();
+                      onNavigateSection('tickets-section');
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors"
+                >
                   場次與票價
                 </a>
               </li>
               <li>
-                <a href="#cast-section" className="hover:text-amber-400 transition-colors">
+                <a
+                  href="#cast-section"
+                  onClick={(e) => {
+                    if (onNavigateSection) {
+                      e.preventDefault();
+                      onNavigateSection('cast-section');
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors"
+                >
                   演員與劇組陣容
                 </a>
               </li>
               <li>
-                <a href="#survey-section" className="hover:text-amber-400 transition-colors">
-                  觀眾回饋與開賣登記
+                <a
+                  href="/feedback"
+                  onClick={(e) => {
+                    if (onOpenFeedback) {
+                      e.preventDefault();
+                      onOpenFeedback();
+                    }
+                  }}
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  觀後回饋
                 </a>
               </li>
             </ul>
