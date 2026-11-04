@@ -185,6 +185,7 @@ export const TICKET_TIERS: TicketTier[] = [
     badge: '已截止 · 現省 $150',
     badgeType: 'hot',
     description: '首波限定早鳥超殺優惠！搶先入駐鐘樓最佳視角，感受即興無可複製的開場震顫。',
+    isExpired: true,
   },
   {
     id: 'early-bird',
@@ -193,10 +194,10 @@ export const TICKET_TIERS: TicketTier[] = [
     originalPrice: 650,
     unit: '單人',
     period: '10/1 ～ 10/31 23:59',
-    badge: '十月預售 92 折',
+    badge: '已截止 · 十月預售 92 折',
     badgeType: 'primary',
     description: '十月限定早鳥席位，在鐘聲正式敲響前為自己留下一席難忘的劇場夜。',
-    isPopular: true,
+    isExpired: true,
   },
   {
     id: 'duo-pack',
@@ -237,5 +238,6 @@ export const TICKET_TIERS: TicketTier[] = [
     badge: '標準票券',
     badgeType: 'primary',
     description: '即興就是當下的決定。推開門，隨時加入這場未知的鐘樓之夜。',
+    isPopular: true,
   },
 ];

@@ -49,6 +49,7 @@ export interface TicketTier {
   description: string;
   features?: string[];
   isPopular?: boolean;
+  isExpired?: boolean;
 }
 
 /**

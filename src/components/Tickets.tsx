@@ -175,19 +175,29 @@ export const Tickets: React.FC<TicketsProps> = () => {
                 </div>
 
                 <div className="pt-6 mt-4 border-t border-slate-800/60">
-                  <a
-                    href={tier.id === 'group-10' ? CONFIG.SOCIAL.FACEBOOK : (CONFIG.TICKETING_URL || 'https://comedyclub.kktix.cc/events/okimprovgroup1108')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`w-full py-3 px-4 rounded-xl font-bold text-sm tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 ${
-                      tier.isPopular
-                        ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-obsidian-950 shadow-glow-gold hover:brightness-110'
-                        : 'glass-card border-amber-500/30 text-amber-300 hover:bg-amber-500/10 hover:border-amber-400'
-                    }`}
-                  >
-                    <span>{tier.id === 'group-10' ? '私訊粉專洽詢' : '前往 KKTIX 購票'}</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+                  {tier.isExpired ? (
+                    <button
+                      type="button"
+                      disabled
+                      className="w-full py-3 px-4 rounded-xl font-bold text-sm tracking-wide bg-slate-800/60 border border-slate-700/50 text-slate-500 cursor-not-allowed flex items-center justify-center"
+                    >
+                      <span>已截止</span>
+                    </button>
+                  ) : (
+                    <a
+                      href={tier.id === 'group-10' ? CONFIG.SOCIAL.FACEBOOK : (CONFIG.TICKETING_URL || 'https://comedyclub.kktix.cc/events/okimprovgroup1108')}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full py-3 px-4 rounded-xl font-bold text-sm tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                        tier.isPopular
+                          ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-obsidian-950 shadow-glow-gold hover:brightness-110'
+                          : 'glass-card border-amber-500/30 text-amber-300 hover:bg-amber-500/10 hover:border-amber-400'
+                      }`}
+                    >
+                      <span>{tier.id === 'group-10' ? '私訊粉專洽詢' : '前往 KKTIX 購票'}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
