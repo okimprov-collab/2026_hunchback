@@ -245,7 +245,8 @@ function doPost(e) {
     const characterMessage = (payload.characterMessage || '').toString().trim();
     const referralSource = (payload.referralSource || '').toString().trim();
     const email = (payload.email || '').toString().trim();
-    const phone = (payload.phone || '').toString().trim();
+    const rawPhone = (payload.phone || '').toString().trim();
+    const phone = rawPhone ? "'" + rawPhone : '';
     const userAgent = (payload.userAgent || e.parameter?.userAgent || '').toString().trim();
 
     // 必填欄位驗證

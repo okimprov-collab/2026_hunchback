@@ -180,17 +180,19 @@ export const SurveyForm: React.FC<SurveyFormProps> = ({ onBackHome }) => {
       newErrors.referralOther = '請填寫「其他」得知管道';
     }
 
-    // 9. 電子郵件信箱 (必填)
-    if (!formData.email.trim()) {
+    // 9. 電子郵件信箱 (必填，一定要有 @)
+    const trimmedEmail = formData.email.trim();
+    if (!trimmedEmail) {
       newErrors.email = '請填寫電子郵件信箱';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      newErrors.email = '請輸入正確的電子郵件格式 (例如: name@example.com)';
+    } else if (!trimmedEmail.includes('@') || !/^[^\s@]+@[^\s@]+$/.test(trimmedEmail)) {
+      newErrors.email = '電子郵件信箱必須包含 @ 符號 (例如: name@example.com)';
     }
 
-    // 10. 手機號碼 (選填)
-    if (formData.phone && formData.phone.trim().length > 0) {
-      if (!/^[0-9+()#\-.\s]{7,20}$/.test(formData.phone.trim())) {
-        newErrors.phone = '請輸入有效的手機或電話號碼';
+    // 10. 手機號碼 (選填，若有填寫必須是 09 開頭且共 10 碼數字)
+    const trimmedPhone = (formData.phone || '').trim();
+    if (trimmedPhone.length > 0) {
+      if (!/^09\d{8}$/.test(trimmedPhone)) {
+        newErrors.phone = '手機號碼須為 09 開頭且共 10 碼數字 (例如：0912345678)';
       }
     }
 
@@ -673,9 +675,11 @@ export const SurveyForm: React.FC<SurveyFormProps> = ({ onBackHome }) => {
                 id="survey-phone"
                 name="phone"
                 type="tel"
+                inputMode="numeric"
+                maxLength={10}
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="例如：0912-345-678"
+                placeholder="例如：0912345678"
                 className={`w-full px-4 py-3.5 rounded-xl bg-obsidian-950/80 border text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition-all ${
                   errors.phone ? 'border-rose-500/80' : 'border-slate-800 focus:border-amber-400/70'
                 }`}
