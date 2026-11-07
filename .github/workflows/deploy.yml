@@ -35,6 +35,9 @@ jobs:
 
       - name: Build production bundle
         run: npm run build
+        env:
+          VITE_TICKETING_URL: ${{ secrets.VITE_TICKETING_URL || vars.VITE_TICKETING_URL }}
+          VITE_GOOGLE_SCRIPT_URL: ${{ secrets.VITE_GOOGLE_SCRIPT_URL || vars.VITE_GOOGLE_SCRIPT_URL }}
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
