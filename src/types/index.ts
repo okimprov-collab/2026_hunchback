@@ -3,9 +3,17 @@
  */
 export interface SurveyFormData {
   name: string;
+  favoriteParts: string[];
+  favoriteScenes: string[];
+  satisfaction: string;
+  formatSuggestions: string[];
+  message: string;
+  targetCharacter?: string;
+  characterMessage?: string;
+  referralSource: string;
+  referralOther?: string;
   email: string;
   phone?: string;
-  message?: string;
 }
 
 /**
